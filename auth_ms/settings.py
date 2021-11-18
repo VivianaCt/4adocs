@@ -75,7 +75,6 @@ WSGI_APPLICATION = 'auth_ms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-AUTH_USER_MODEL = 'authApp.User'
 
 DATABASES = {
     'default': {
@@ -128,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Relacionarlo indicando el <nombre de la aplicacion>.<nombre del modelo>
-AUTH_USER_MODEL = 'auth_app.Usuario'
+AUTH_USER_MODEL = 'auth_app.User'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=2),
