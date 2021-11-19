@@ -1,8 +1,10 @@
+
+
 from rest_framework import views, status, generics
 from rest_framework.response import Response
 
-from auth_app.models import Usuario
-from auth_app.serializers import UsuarioSerializer
+from auth_app.models import User
+from auth_app.serializers.userSerializer import UserSerializer
 
 '''
     Crear usuarios
@@ -11,16 +13,16 @@ from auth_app.serializers import UsuarioSerializer
 
 class CrearUsuarioView(views.APIView):
     def get(self, request, *args, **kwargs):
-        usuarios = Usuario.objects.filter()
+        usuarios = User.objects.filter()
         tmp = []
         for u in usuarios:
-            tmp.append(UsuarioSerializer(u).data)
+            tmp.append(UserSerializer(u).data)
         return Response({
             'usuarios': tmp
         })
 
     def post(self, request, *args, **kwargs):
-        serializer = UsuarioSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         valid = serializer.is_valid()
         if valid:
             serializer.save()
@@ -32,6 +34,6 @@ class CrearUsuarioView(views.APIView):
 
 
 class DetalleUsuarioView(generics.RetrieveUpdateAPIView):
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 

@@ -51,6 +51,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+            'DEFAULT_PERMISSION_CLASSES': (
+                'rest_framework.permissions.AllowAny',
+            ),
+            'DEFAULT_AUTHENTICATION_CLASSES': (
+                'rest_framework_simplejwt.authentication.JWTAuthentication',
+            )
+}
+
 ROOT_URLCONF = 'auth_ms.urls'
 
 TEMPLATES = [
@@ -75,7 +84,8 @@ WSGI_APPLICATION = 'auth_ms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
+#Base de datos Daniel:
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -86,7 +96,19 @@ DATABASES = {
         'PASSWORD': '6fd01741371ab47ec43c9082efc69c7750d174e3e28e9b67956b452814e958a7'
     }
 }
+"""
 
+#Base de datos Vivi
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8t0a3s5953ct1',
+        'USER': 'nwrmtxehmluxve',
+        'PASSWORD': 'a429fa314f8d636cb7752aeed4523eab84794aff4a1dea187e2a3f645ccc48ce',
+        'HOST': 'ec2-34-233-105-94.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

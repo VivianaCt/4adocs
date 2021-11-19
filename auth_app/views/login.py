@@ -1,3 +1,4 @@
+
 import datetime
 import jwt
 from django.http import JsonResponse
@@ -6,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status, serializers
 from rest_framework.views import APIView
 
-from auth_app.models import Usuario
+from auth_app.models import User
 from auth_ms.settings import SECRET_KEY
 
 
@@ -30,7 +31,7 @@ class CustomSerializer(serializers.Serializer):
         username = attrs.get('username')
         password = attrs.get('password')
         if username and password:
-            user: Usuario = Usuario.objects.get(username=username)
+            user: User = User.objects.get(username=username)
             if not user.check_password(password):
                 msg = 'Unable to log in with provided credentials.'
                 raise serializers.ValidationError(msg, code='authorization')
@@ -46,7 +47,7 @@ class ManualLoginView(APIView):
         username = request.data.get('usuario')
         password = request.data.get('contrasena')
         try:
-            user = Usuario.objects.get(username=username)
+            user = User.objects.get(username=username)
             if user.check_password(password):
                 now = datetime.datetime.now()
                 access_token = jwt.encode(
@@ -65,7 +66,7 @@ class ManualLoginView(APIView):
                 return Response({
                     'error': f'Credenciales invalidas'
                 }, status=status.HTTP_400_BAD_REQUEST)
-        except Usuario.DoesNotExist:
+        except User.DoesNotExist:
             return Response({
                 'error': f'Usuario: {username} no existe'
             }, status=status.HTTP_400_BAD_REQUEST)
@@ -121,7 +122,7 @@ class LoginView(ObtainAuthToken):
 
 
 class AuthView(APIView):
-    user: Usuario
+    user: User
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -129,7 +130,7 @@ class AuthView(APIView):
                 raise Exception('No token')
             token = request.headers.get('Authorization').split('Bearer ')[1]
             decoded = jwt.decode(token, key=SECRET_KEY, algorithms=['HS256'])
-            self.user = Usuario.objects.get(id=decoded.get('user_id'))
+            self.user = User.objects.get(id=decoded.get('user_id'))
             if self.user.is_active:
                 return super(AuthView, self).dispatch(request, *args, **kwargs)
             else:
@@ -150,3 +151,4 @@ class Usuarios(AuthView):
         return Response({
             'status': 'ok'
         })
+
