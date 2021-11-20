@@ -20,4 +20,19 @@ class StockSerializer(serializers.ModelSerializer):
             'stock': stock.stock,
             
         }
+
+    def delete_element(self, id):
+        product = Stock.objects.get(sku=id),
+        product.delete()
+
+        return{
+            'sku': product.sku,
+            'nombre': product.nombre,
+            'descripcion': product.descripcion,
+            'precio': product.precio,
+            'stock': product.stock,
+        }
+
+    def get_element(self, **obj):
+        return Stock.objects.filter(**obj)
          
