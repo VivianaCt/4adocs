@@ -10,4 +10,11 @@ from .productDeleteView import ProductDeleteView
 from .productDetailView import ProductDetailView
 from .productUpdateView import ProductUpdateView
 
+#VISTA DEL CRUD USUARIO
+from .userCreate import UserCreate
+from .userDetail import UserDetail
+from .userAllDetail import UserAllDetail
+from .userDelete import UserDelete
+from .userUpdate import UserUpdate
+
 
