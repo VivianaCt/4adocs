@@ -19,6 +19,7 @@ from django.urls import path, include
 from auth_app.views.usuarios import CrearUsuarioView, DetalleUsuarioView
 from auth_app.views import producCreateView,productAllDetailView,productDeleteView,productUpdateView,productDetailView
 from auth_app.views import userCreate,userDetail,userAllDetail,userUpdate,userDelete
+from auth_app.views import adminCreate,adminDetail,adminAllDetail,adminUpdate,adminDelete
 
 urlpatterns = [
     path('usuario/', CrearUsuarioView.as_view(), name='usuarios'),
@@ -38,5 +39,12 @@ urlpatterns = [
     path('detail_all_user/<int:pk>/',userAllDetail.UserAllDetail.as_view()),
     path('update_user/<int:pk>/', userUpdate.UserUpdate.as_view()),
     path('delete_user/<int:pk>/', userDelete.UserDelete.as_view()),
+    
+    path('create_admin/',adminCreate.AdminCreate.as_view()),
+    path('detail_admin/<int:pk>/',adminDetail.AdminDetail.as_view()),
+    path('detail_all_admin/<int:pk>/',adminAllDetail.AdminAllDetail.as_view()),
+    path('update_admin/<int:pk>/', adminUpdate.AdminUpdate.as_view()),
+    path('delete_user/<int:pk>/', adminDelete.AdminDelete.as_view()),
+    
 ]
 # re_path() url basadas en expresiones regulares
