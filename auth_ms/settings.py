@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'auth_app'
 ]
 
@@ -59,6 +60,8 @@ REST_FRAMEWORK = {
                 'rest_framework_simplejwt.authentication.JWTAuthentication',
             )
 }
+
+AUTH_USER_MODEL = 'auth_app.User'
 
 ROOT_URLCONF = 'auth_ms.urls'
 
@@ -152,6 +155,13 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'auth_app.User'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=2),
-    'REFRESH_TOKEN_LIFETIME': timedelta(hours=1)
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(hours=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+            'UPDATE_LAST_LOGIN': False,
+
+            'ALGORITHM': 'HS256',
+            'USER_ID_FIELD': 'id',
+            'USER_ID_CLAIM': 'user_id',
 }

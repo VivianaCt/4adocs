@@ -16,12 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from auth_app.views import CrearUsuarioView, DetalleUsuarioView, LoginView, ManualLoginView, LoginCustomView, CheckToken
+from auth_app.views.usuarios import CrearUsuarioView, DetalleUsuarioView
+from auth_app.views import producCreateView,productAllDetailView,productDeleteView,productUpdateView,productDetailView
+from auth_app.views import userCreate,userDetail,userAllDetail,userUpdate,userDelete
 
 urlpatterns = [
     path('usuario/', CrearUsuarioView.as_view(), name='usuarios'),
     path('usuario/<int:pk>', DetalleUsuarioView.as_view(), name='usuario'),
     path('manual/', include('auth_app.urls')),
-    path('simple/', include('auth_app.urls_simple_jwt'))
+    path('simple/', include('auth_app.urls_simple_jwt')),
+
+    
+    path('create_product/', producCreateView.ProductCreateView.as_view()),
+    path('update_product/<int:pk>/', productUpdateView.ProductUpdateView.as_view()),
+    path('delete_product/<int:pk>/', productDeleteView.ProductDeleteView.as_view()),
+    path('detail_product/<int:pk>/', productDetailView.ProductDetailView.as_view()),
+    path('detail_all_products/<int:pk>/', productAllDetailView.ProductAllDetailView.as_view()),
+
+    path('create_user/',userCreate.UserCreate.as_view()),
+    path('detail_user/<int:pk>/',userDetail.UserDetail.as_view()),
+    path('detail_all_user/<int:pk>/',userAllDetail.UserAllDetail.as_view()),
+    path('update_user/<int:pk>/', userUpdate.UserUpdate.as_view()),
+    path('delete_user/<int:pk>/', userDelete.UserDelete.as_view()),
 ]
 # re_path() url basadas en expresiones regulares

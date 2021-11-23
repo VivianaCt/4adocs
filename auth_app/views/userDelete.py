@@ -5,7 +5,7 @@ from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated 
  
 from auth_app.models.user import User 
-from auth_app.models.serializers.userSerializer import UserSerializer 
+from auth_app.serializers.userSerializer import UserSerializer 
  
 class UserDelete(views.APIView):     
     queryset = User.objects.all()     
@@ -27,4 +27,4 @@ class UserDelete(views.APIView):
         userSerializer = UserSerializer()
 
         stringResponse = {'detail':'se elimino correctamente'}
-        return Response(userSerializer.delete_element(id=kwargs["id"]), status=status.HTTP_200_OK)
+        return Response(userSerializer.delete_element(id=kwargs["pk"]), status=status.HTTP_200_OK)

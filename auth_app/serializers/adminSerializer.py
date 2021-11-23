@@ -20,4 +20,17 @@ class AdminSerializer(serializers.ModelSerializer):
     
             
         }
+
+    def get_element (self, **obj):
+        return Admin.objects.filter(**obj)
+
+    def delete_element(self, id):
+        admin=Admin.objects.get(id=id)
+        admin.delete ()
+        return{
+            'id': admin.id,
+            'nombre': admin.nombre,
+            'email': admin.email,
+            'password': admin.password,
+        }   
          

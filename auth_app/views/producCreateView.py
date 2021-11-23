@@ -13,10 +13,9 @@ class ProductCreateView(views.APIView):
         serializer = StockSerializer(data = request.data)
         if serializer.is_valid(raise_exception=True):
 
-        
             p = serializer.save()
 
             return Response(serializer.to_representation(p), status=status.HTTP_201_CREATED)
 
         else:
-            return Response("Error en la cre4acion", status=status.HTTP_400_BAD_REQUEST)
+            return Response("Error en la creacion", status=status.HTTP_400_BAD_REQUEST)

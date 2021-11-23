@@ -5,7 +5,7 @@ from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated 
  
 from auth_app.models.user import User 
-from auth_app.models.serializers.userSerializer import UserSerializer 
+from auth_app.serializers.userSerializer import UserSerializer 
  
 class UserAllDetail(generics.RetrieveAPIView):     
     queryset = User.objects.all()     

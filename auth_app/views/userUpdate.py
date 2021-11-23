@@ -5,7 +5,7 @@ from rest_framework_simplejwt.backends import TokenBackend
 from rest_framework.permissions import IsAuthenticated 
  
 from auth_app.models.user import User 
-from auth_app.models.serializers.userSerializer import UserSerializer 
+from auth_app.serializers.userSerializer import UserSerializer 
  
 class UserUpdate(generics.RetrieveAPIView):     
     queryset = User.objects.all()     
@@ -22,7 +22,7 @@ class UserUpdate(generics.RetrieveAPIView):
             stringResponse = {'detail':'No está autorizado para ver esto'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)                
 
-        user = User( id = kwargs['id'])
+        user = User( id = kwargs['pk'])
 
         userSerializer = UserSerializer(user, data=request.data)
         userSerializer.is_valid(raise_exception=True)        
