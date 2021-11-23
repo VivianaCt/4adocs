@@ -15,3 +15,12 @@ from .userDetail import UserDetail
 from .userAllDetail import UserAllDetail
 from .userDelete import UserDelete
 from .userUpdate import UserUpdate
+
+#VISTA DEL CRUD ADMINISTRADOR
+from .adminCreate import AdminCreate
+from .adminDetail import AdminDetail
+from .adminAllDetail import AdminAllDetail
+from .adminDelete import AdminDelete
+from .adminUpdate import AdminUpdate
+
+
