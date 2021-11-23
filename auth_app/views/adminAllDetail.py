@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.backends import TokenBackend 
 from rest_framework.permissions import IsAuthenticated 
  
-from auth_app.models.admis import Admin
+from auth_app.models.admins import Admin
 from auth_app.serializers.adminSerializer import AdminSerializer 
  
 class AdminAllDetail(generics.RetrieveAPIView):     
@@ -20,7 +20,7 @@ class AdminAllDetail(generics.RetrieveAPIView):
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
         valid_data = tokenBackend.decode(token,verify=False)
 
-        if valid_data['admin_id'] != kwargs['pk']:
+        if valid_data['user_id'] != kwargs['pk']:
             stringResponse = {'detail':'No está autorizado para ver esto'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         

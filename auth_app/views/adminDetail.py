@@ -19,7 +19,7 @@ class AdminDetail(generics.RetrieveAPIView):
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])         
         valid_data = tokenBackend.decode(token,verify=False) 
  
-        if valid_data['admin_id'] != kwargs['pk']:             
+        if valid_data['user_id'] != kwargs['pk']:             
             stringResponse = {'detail':'Unauthorized Request'}             
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)    
 
