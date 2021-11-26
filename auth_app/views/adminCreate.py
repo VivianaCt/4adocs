@@ -14,10 +14,10 @@ class AdminCreate(views.APIView):
         serializer = AdminSerializer(data=request.data)         
         serializer.is_valid(raise_exception=True)         
         serializer.save() 
-
+        """
         tokenData = {"nombre":request.data["nombre"],                       
                      "password":request.data["password"]}         
         tokenSerializer = TokenObtainPairSerializer(data=tokenData)         
         tokenSerializer.is_valid(raise_exception=True)                          
-        
-        return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
+        """
+        return Response(serializer.validated_data, status=status.HTTP_201_CREATED)

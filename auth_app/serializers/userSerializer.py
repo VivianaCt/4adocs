@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id','username','email','telefono','direccion','password']
 
     def create(self, validated_data):
-            userInstance = User.objects.create(**validated_data)
+            userInstance = User.objects.create(**validated_data, is_superuser=True)
             return userInstance
 
     def to_representation(self, obj):
