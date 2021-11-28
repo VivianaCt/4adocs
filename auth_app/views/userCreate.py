@@ -19,6 +19,9 @@ class UserCreate(views.APIView):
             stringResponse = {'detail':'No está autorizado para ver esto'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         """
+
+        if(request.data['superuser']==""):
+            request.data['superuser']='False'
         serializer = UserSerializer(data=request.data)         
         serializer.is_valid(raise_exception=True)         
         serializer.save() 

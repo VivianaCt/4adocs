@@ -18,7 +18,7 @@ class ProductUpdateView(generics.RetrieveAPIView):
         token = request.META.get('HTTP_AUTHORIZATION')[7:]
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
 
-        p = Stock(sku = kwargs['pk'])
+        p = Stock(id = kwargs['pk'])
 
         productSerializer = StockSerializer(p, data=request.data)
         productSerializer.is_valid(raise_exception=True)

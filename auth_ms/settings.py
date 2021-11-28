@@ -25,6 +25,7 @@ SECRET_KEY = 'up5aw4h3r5x%3*@u@#xx_0l^naptk9gyb2b6@oi2#*f4kqj!1j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = ['vitrineando-ms2.herokuapp.com']
 ALLOWED_HOSTS = []
 
 

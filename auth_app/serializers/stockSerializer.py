@@ -4,7 +4,7 @@ from auth_app.models.stock import Stock
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        fields = ['sku','nombre','descripcion','precio', 'stock']
+        fields = ['id','nombre','descripcion','precio', 'stock']
 
     def create (self, validated_data):
         stockInstance= Stock.objects.create(**validated_data)
@@ -13,7 +13,7 @@ class StockSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         stock = Stock.objects.get(id=obj.id)
         return{
-            'sku': stock.sku,
+            'id': stock.id,
             'nombre': stock.nombre,
             'descripcion': stock.descripcion,
             'precio': stock.precio,
@@ -22,15 +22,15 @@ class StockSerializer(serializers.ModelSerializer):
         }
 
     def delete_element(self, id):
-        product = Stock.objects.get(sku=id),
-        product.delete()
+        stock = Stock.objects.get(id=id)
+        stock.delete()
 
         return{
-            'sku': product.sku,
-            'nombre': product.nombre,
-            'descripcion': product.descripcion,
-            'precio': product.precio,
-            'stock': product.stock,
+            'id': stock.id,
+            'nombre': stock.nombre,
+            'descripcion': stock.descripcion,
+            'precio': stock.precio,
+            'stock': stock.stock,
         }
 
     def get_element(self, **obj):

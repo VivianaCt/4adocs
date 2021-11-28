@@ -6,11 +6,15 @@ from auth_app.models.user import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','email','telefono','direccion','password']
+        fields = ['id','username','email','telefono','direccion','password','superuser']
 
     def create(self, validated_data):
+        if(validated_data['superuser']=='True'):
             userInstance = User.objects.create(**validated_data, is_superuser=True)
-            return userInstance
+        else:
+            userInstance = User.objects.create(**validated_data)
+        
+        return userInstance
 
     def to_representation(self, obj):
         user = User.objects.get(id=obj.id)
